@@ -33,6 +33,33 @@ function JuniorEngineer(health, intelligence) {
 
 // 여기에 코드를 작성하세요
 // TO-DO
+Worker.prototype._super = function (health) {
+  Worker.call(this, health);
+};
+
+Worker.prototype.getHealth = function () {
+  return this._health;
+};
+
+Worker.prototype.work = function () {
+  this._health = this._health - 1;
+};
+
+JuniorEngineer.prototype = Object.create(Worker.prototype, {});
+
+JuniorEngineer.prototype.getIntelligence = function () {
+  return this._intelligence;
+};
+
+JuniorEngineer.prototype.work = function () {
+  Worker.prototype.work.call(this);
+  this._intelligence++;
+};
+
+JuniorEngineer.prototype.isBornGenius = function () {
+  return this._isBornGenius ?? false;
+};
+
 //- 여기에 코드를 작성하세요
 
 /**
