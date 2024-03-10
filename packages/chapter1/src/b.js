@@ -50,7 +50,7 @@ class HardWork {
     return this._result;
   }
   _initTasks() {
-    const count = 300;
+    const count = 30000;
     const tasks = new Array(count);
 
     for (let i = 0; i < count; i++) {
@@ -69,7 +69,7 @@ class HardWork {
       }
     }
 
-    // this._sendLog();
+    this._sendLog();
   };
   async _sendLog() {
     const blob = new Blob(
