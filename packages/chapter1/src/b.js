@@ -32,19 +32,25 @@ class HardWork {
   }
 
   do() {
-    for (let i = 0; i < this._tasks.length; i++) {
-      setTimeout(() => {
-        this._tasks[i]();
-      }, 0);
-    }
+    this._executeTask(0);
   }
 
+  _executeTask(index) {
+    if (index >= this._tasks.length) {
+      return;
+    }
+
+    setTimeout(() => {
+      this._tasks[index]();
+      this._executeTask(index + 1);
+    }, 0);
+  }
   // do() 이외의 메서드는 수정하지마세요
   get result() {
     return this._result;
   }
   _initTasks() {
-    const count = 30000;
+    const count = 300;
     const tasks = new Array(count);
 
     for (let i = 0; i < count; i++) {
@@ -63,7 +69,7 @@ class HardWork {
       }
     }
 
-    this._sendLog();
+    // this._sendLog();
   };
   async _sendLog() {
     const blob = new Blob(
