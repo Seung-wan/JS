@@ -25,9 +25,7 @@ function Worker(health) {
 function JuniorEngineer(health, intelligence) {
   this._super(health);
   this._intelligence = intelligence ?? 1;
-  if (this._intelligence > 10) {
-    this._isBornGenius = true;
-  }
+  this._isBornGenius = this._intelligence > 10 ? true : false;
 }
 //- 생성자 함수는 수정하지 마세요
 
