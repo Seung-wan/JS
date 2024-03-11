@@ -97,7 +97,4 @@ function main() {
 
 main();
 
-module.exports = {
-  Worker,
-  JuniorEngineer,
-};
+export { Worker, JuniorEngineer };
