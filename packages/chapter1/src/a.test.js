@@ -1,4 +1,4 @@
-const { Worker, JuniorEngineer } = require('./a');
+const { Worker, JuniorEngineer } = require('./a.js');
 
 describe('챕터 1 :: 문제 A', () => {
   it('일꾼은 체력 10을 기본으로 갖는다.', () => {

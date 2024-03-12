@@ -25,14 +25,39 @@ function Worker(health) {
 function JuniorEngineer(health, intelligence) {
   this._super(health);
   this._intelligence = intelligence ?? 1;
-  if (this._intelligence > 10) {
-    this._isBornGenius = true;
-  }
+  this._isBornGenius = this._intelligence > 10 ? true : false;
 }
 //- 생성자 함수는 수정하지 마세요
 
 // 여기에 코드를 작성하세요
 // TO-DO
+Worker.prototype._super = function (health) {
+  Worker.call(this, health);
+};
+
+Worker.prototype.getHealth = function () {
+  return this._health;
+};
+
+Worker.prototype.work = function () {
+  this._health = this._health - 1;
+};
+
+JuniorEngineer.prototype = Object.create(Worker.prototype, {});
+
+JuniorEngineer.prototype.getIntelligence = function () {
+  return this._intelligence;
+};
+
+JuniorEngineer.prototype.work = function () {
+  Worker.prototype.work.call(this);
+  this._intelligence++;
+};
+
+JuniorEngineer.prototype.isBornGenius = function () {
+  return this._isBornGenius ?? false;
+};
+
 //- 여기에 코드를 작성하세요
 
 /**
@@ -58,19 +83,18 @@ function JuniorEngineer(health, intelligence) {
  * - V8 엔진의 히든클래스 개념을 이해하고 이 개념을 응용하여 최적화 해보세요.
  * - ES 모듈시스템으로 바꾼뒤, 확장자를 .mjs로 변경한 뒤 실행해보세요. 최적화 결과가 같을까요?
  */
-// function main() {
-//   var startTime = performance.now();
-//   for (var i = 0; i < 10000000; i++) {
-//     new JuniorEngineer(10, Math.floor(Math.random() * 20)).isBornGenius();
-//   }
-//   var endTime = performance.now();
+function main() {
+  var startTime = performance.now();
 
-//   console.log(endTime - startTime);
-// }
+  for (var i = 0; i < 10000000; i++) {
+    new JuniorEngineer(10, Math.floor(Math.random() * 20)).isBornGenius();
+  }
 
-// main();
+  var endTime = performance.now();
 
-module.exports = {
-  Worker,
-  JuniorEngineer,
-};
+  console.log(endTime - startTime);
+}
+
+main();
+
+export { Worker, JuniorEngineer };
